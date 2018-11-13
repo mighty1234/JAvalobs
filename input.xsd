@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML schema -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://nure.ua/romenskiy/Lab2/entity"
+	xmlns:tns="http://nure.ua/romenskiy/Lab2/entity">
+
+	<xsd:element name="Weapons">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Weapon" type="tns:Weapon"
+					maxOccurs="unbounded"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="Weapon">
+		<xsd:sequence>
+			<xsd:element name="Type" type="tns:typeWeapon" />
+			<xsd:element name="Caliber" type="tns:caliber" />
+			<xsd:element name="Origin" type="xsd:string" />
+			<xsd:element name="Prop" type="tns:Prop" />
+			<xsd:element name="Value" type="xsd:string"
+				default="false" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Prop">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string" />
+			<xsd:element name="Material" type="xsd:string" />
+			<xsd:element name="Trunk" type="xsd:string" />
+			<xsd:element name="Haft" type="tns:parent" />
+			<xsd:element name="MagSize" type="xsd:int" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="parent" abstract="true" />
+
+	<xsd:complexType name="Wood">
+		<xsd:complexContent>
+			<xsd:extension base="tns:parent">
+				<xsd:sequence>
+					<xsd:element name="typeWood" type="tns:typeWood" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Steel">
+		<xsd:complexContent>
+			<xsd:extension base="tns:parent" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Plastic">
+		<xsd:complexContent>
+			<xsd:extension base="tns:parent" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+	<xsd:simpleType name="typeWeapon">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="gun|rifle|machinegun"></xsd:pattern>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="typeWood">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="birch|oak|pine|Indian cane"></xsd:pattern>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="material">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(steel|plastic|wood){1}"></xsd:pattern>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="caliber">
+		<xsd:restriction base="xsd:double">
+			<xsd:minInclusive value="0"></xsd:minInclusive>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

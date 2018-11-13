@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Weapons
+	xmlns:tns="http://nure.ua/romenskiy/Lab2/entity"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://nure.ua/romenskiy/Lab2/entity input.xsd ">
+	<Weapon>
+		<Type>gun</Type>
+		<Caliber>0.5</Caliber>
+		<Origin>Origin</Origin>
+		<Prop>
+			<Name>Name</Name>
+			<Material>Material</Material>
+			<Trunk>chrome</Trunk>
+			<Haft xsi:type="tns:Steel" />
+			<MagSize>0</MagSize>
+		</Prop>
+		<Value>false</Value>
+	</Weapon>
+</tns:Weapons>
